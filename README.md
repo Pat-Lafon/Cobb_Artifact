@@ -99,7 +99,7 @@ The Glorious Glasgow Haskell Compilation System, version 9.6.6
 ```
 
 For running the data processing scripts, we assume a `python3` installation with
-the `tabulate` package.
+the `tabulate`, `numpy` and `matplotlib` packages.
 
 FOR RUNNING THIS FROM GITHUB:
 - clone with the `--recursive flag`
@@ -142,10 +142,17 @@ Once all of the data has been collected(or just using the results files
 currently included), just run `make results` and view the produced latex table.
 
 
-Figure 11
+The data for Figure 11, Figure 12, and Figure 13 is produced by running:
+```sh
+cd Cobb_PBT
+QCHECK_MSG_INTERVAL=2000.0 && dune exec Cobb_PBT -- eval2
+QCHECK_MSG_INTERVAL=2000.0 && dune exec Cobb_PBT -- eval3
+```
 
-Figure 12
+The results are then visualized into tables by
 
-Figure 13
+```sh
+make results
+```
 
 Figure 14
