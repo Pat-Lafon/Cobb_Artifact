@@ -132,6 +132,8 @@ dune build
 
 ## Running
 
+### RQ1
+
 The results in Table 1 can be reproduced by running Cobb on each of the
 benchmark files in `data/validation/*`. We provide a helpful script for this as
 `python scripts/synth.py underapproximation_type/data/validation/sizedlist/`
@@ -141,6 +143,7 @@ solver file) or each file can be run manually for easy inspection.
 Once all of the data has been collected(or just using the results files
 currently included), just run `make results` and view the produced latex table.
 
+### RQ2/3
 
 The data for Figure 11, Figure 12, and Figure 13 is produced by running:
 ```sh
@@ -155,4 +158,6 @@ The results are then visualized into tables by
 make results
 ```
 
-Figure 14
+### RQ4
+
+Figure 14 TODO
