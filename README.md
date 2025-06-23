@@ -96,6 +96,13 @@ dune --version
 
 ghc --version
 The Glorious Glasgow Haskell Compilation System, version 9.6.6
+
+cabal --version
+cabal-install version 3.12.1.0
+compiled using version 3.12.1.0 of the Cabal library 
+
+z3 --version
+Z3 version 4.15.1 - 64 bit
 ```
 
 For running the data processing scripts, we assume a `python3` installation with
