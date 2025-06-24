@@ -99,7 +99,7 @@ The Glorious Glasgow Haskell Compilation System, version 9.6.6
 
 cabal --version
 cabal-install version 3.12.1.0
-compiled using version 3.12.1.0 of the Cabal library 
+compiled using version 3.12.1.0 of the Cabal library
 
 z3 --version
 Z3 version 4.15.1 - 64 bit
@@ -133,7 +133,7 @@ We can now reuse the same switch for Cobb_PBT by just adding 2 dependencies
 
 ```sh
 cd Cobb_PBT
-opam install qcheck fileutils
+opam install alcotest fileutils
 dune build
 ```
 
