@@ -76,7 +76,7 @@ constructed from the included dockerfile with a docker installation.
 (Change the platform flag to one appropriate for your setup).
 
 ```sh
-docker load < <(gunzip -c opam-z3.tar.gz) # We supply a base image with opam and z3 4.15.1 installed given the higher ram requirements to compile z3 inside of doc on macs
+docker load < <(gunzip -c opam-z3.tar.gz) # We supply a base image with opam and z3 4.15.1 installed given the higher ram requirements to compile z3 inside of doc on macs TODO: Store this instead on dockerhub since I can't commit to github
 docker build --platform linux/arm64/v8 -t cobb_artifact .
 docker run --pull never --platform linux/amd64 -it cobb_artifact
 ```
