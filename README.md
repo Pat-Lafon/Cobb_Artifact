@@ -107,7 +107,7 @@ Z3 version 4.15.1 - 64 bit
 ```
 
 For running the data processing scripts, we assume a `python3` installation with
-the `tabulate`, `numpy` and `matplotlib` packages.
+the `tabulate`, `numpy` and `matplotlib` packages. We suggest `uv`, `uv venv && uv pip install numpy tabulate matplotlib && source .venv/bin/activate`
 
 FOR RUNNING THIS FROM GITHUB:
 - clone with the `--recursive flag`

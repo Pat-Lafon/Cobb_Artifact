@@ -25,3 +25,9 @@ RUN opam install alcotest --yes
 RUN opam install ounit2 --yes
 
 RUN eval $(opam env)
+
+RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+
+RUN python3 get-pip.py
+
+RUN pip3 install matplotlib numpy tabulate
