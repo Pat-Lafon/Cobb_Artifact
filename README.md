@@ -21,8 +21,8 @@ evaluation by the artifact evaluation committee should this paper be accepted.
 ### Contents and Claims
 
 This artifact will contain the source code for Cobb, the benchmark files and
-outputted results for RQ's 1-4(specifically Tables 1, Figure 11, Figure 12,
-Figure 13, and Figure 14). We provided our modified version of Poirot(from
+outputted results for RQ's 1-4 (specifically Tables 1, Figure 11, Figure 12,
+Figure 13, and Figure 14). We provide our modified version of Poirot (from
 `Covering All the Bases: Type-Based Verification of Test Input Generators`). We
 will provide a docker image of this with the necessary dependencies and a
 sufficient set of package management files to compile this project locally.
@@ -48,7 +48,7 @@ Z3 version 4.15.1 - 64 bit
   approach. While the algorithm has not changed, the overall runtime is on
   average reduced.
 - This paper is under minor revision and as such will be extended with 3
-  additional evaluations/studies/deliverables which will be submitted by July
+  additional evaluations/studies/deliverables which will be completed by the July
   29 - Submission of Revisions R2 deadline. The following is the set of changes
   that were proposed and then accepted by reviewers. We do not expect there to
   be any major changes to the algorithm/artifact other than setup to run the following:
@@ -60,11 +60,13 @@ Z3 version 4.15.1 - 64 bit
 
 ### Getting a lay of the land
 
-This artifact is divided into two projects: Cobb which is the program
-synthesizer and Cobb_PBT which evaluates the produced generators.
+This artifact is divided into two projects: 
+  1. `Cobb`: the implementation of our type-guided input repair algorithm. `Cobb`
+    uses a modified version of `Poirot`, the coverage-type checker described in
+    `Covering All the Bases: Type-Based Verification of Test Input Generators` by Zhou et al. 
+  2. `Cobb_PBT`: the scripts needed to reproduce the evaluation of Cobb presented
+    in the paper. 
 
-Cobb contains:
-`underapproximation_type`
 
 ## Build/Install
 
@@ -130,17 +132,15 @@ Verify Cobb by running the simplest synthesis benchmark:
 cd underapproximation_type/ && dune exec Cobb -- synthesis data/validation/sizedlist/prog1.ml
 ```
 
-We can now reuse the same switch for Cobb_PBT by just adding 2 dependencies
+We can now reuse the same switch for Cobb_PBT by just adding 2 dependencies:
 
 ```sh
-cd Cobb_PBT
+cd ../../Cobb_PBT
 opam install alcotest fileutils
 dune build
 ```
 
-Note that this does raise an error from code inside `qcheck`. This is unrelated
-to any functionality Cobb uses, and the build succeeds despite it. The
-following is safe to ignore
+Note that `dune` may raise the following error when building part of the `qcheck` library. 
 
 ```
 File "qcheck/src/ppx_deriving_qcheck/ppx_deriving_qcheck.ml", line 60, characters 18-59:
@@ -150,6 +150,8 @@ Error: This pattern matches values of type 'a * 'b * 'c
        but a pattern was expected which matches values of type
          cases = case list
 ```
+Not to worry, this artifact does not depend on the code that throws this error, 
+and the build succeeds despite it, so this error message can be safely disregarded. 
 
 ## Running
 
@@ -166,14 +168,17 @@ currently included), just run `make results` and view the produced latex table.
 
 ### RQ2/3
 
-The data for Figure 11, Figure 12, and Figure 13 is produced by running. This
-will take a few minutes(or longer if running inside of docker), note that for unique_list or a few others it looks like
-it gets stuck, just be patient:
+The data for Figure 11, Figure 12, and Figure 13 is produced by running the 
+following commands in the `Cobb_PBT` directory: 
+
 ```sh
-cd Cobb_PBT
 export QCHECK_MSG_INTERVAL=2000.0 && dune exec Cobb_PBT -- eval2
 export QCHECK_MSG_INTERVAL=2000.0 && dune exec Cobb_PBT -- eval3
 ```
+
+This will take a few minutes (potentially longer if running inside of docker).
+For some of the longer running benchmarks, e.g., `unique_list`, it may look like
+the script is stuck, but just be patient. 
 
 The results are then visualized into tables by
 
