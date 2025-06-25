@@ -171,8 +171,8 @@ will take a few minutes(or longer if running inside of docker), note that for un
 it gets stuck, just be patient:
 ```sh
 cd Cobb_PBT
-QCHECK_MSG_INTERVAL=2000.0 && dune exec Cobb_PBT -- eval2
-QCHECK_MSG_INTERVAL=2000.0 && dune exec Cobb_PBT -- eval3
+export QCHECK_MSG_INTERVAL=2000.0 && dune exec Cobb_PBT -- eval2
+export QCHECK_MSG_INTERVAL=2000.0 && dune exec Cobb_PBT -- eval3
 ```
 
 The results are then visualized into tables by
