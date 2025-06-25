@@ -76,8 +76,9 @@ constructed from the included dockerfile with a docker installation.
 (Change the platform flag to one appropriate for your setup).
 
 ```sh
-docker build --platform linux/arm64 -t cobb_artifact .
-docker run --pull never --platform linux/arm64 -it cobb_artifact
+docker load < <(gunzip -c opam-z3.tar.gz) # We supply a base image with opam and z3 4.15.1 installed given the higher ram requirements to compile z3 inside of doc on macs
+docker build --platform linux/arm64/v8 -t cobb_artifact .
+docker run --pull never --platform linux/amd64 -it cobb_artifact
 ```
 
 ### Locally Installing Dependencies
@@ -137,6 +138,19 @@ opam install alcotest fileutils
 dune build
 ```
 
+Note that this does raise an error from code inside `qcheck`. This is unrelated
+to any functionality Cobb uses, and the build succeeds despite it. The
+following is safe to ignore
+
+```
+File "qcheck/src/ppx_deriving_qcheck/ppx_deriving_qcheck.ml", line 60, characters 18-59:
+60 |   | Pexp_function (fargs, _constraint, Pfunction_body expr) ->
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error: This pattern matches values of type 'a * 'b * 'c
+       but a pattern was expected which matches values of type
+         cases = case list
+```
+
 ## Running
 
 ### RQ1
@@ -152,7 +166,9 @@ currently included), just run `make results` and view the produced latex table.
 
 ### RQ2/3
 
-The data for Figure 11, Figure 12, and Figure 13 is produced by running:
+The data for Figure 11, Figure 12, and Figure 13 is produced by running. This
+will take a few minutes(or longer if running inside of docker), note that for unique_list or a few others it looks like
+it gets stuck, just be patient:
 ```sh
 cd Cobb_PBT
 QCHECK_MSG_INTERVAL=2000.0 && dune exec Cobb_PBT -- eval2
