@@ -1,0 +1,32 @@
+FROM ubuntu:22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV OPAMYES=true
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    opam \
+    m4 \
+    git \
+    curl \
+    unzip \
+    bubblewrap \
+    build-essential \
+    python3-distutils \
+    libgmp-dev \
+    pkg-config \
+    && rm -rf /var/lib/apt/lists/*
+
+# Initialize opam
+RUN opam init --bare && opam init -y
+
+# Create a switch for OCaml (you can change the version if needed)
+RUN opam switch create 4.14.1
+
+# Set shell to bash to evaluate opam env
+SHELL ["/bin/bash", "-c"]
+
+# Install z3 from opam
+RUN eval "$(opam env)" && opam install z3.4.15.1
+
+CMD ["/bin/bash"]
