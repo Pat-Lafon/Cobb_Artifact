@@ -92,7 +92,7 @@ its package manager `cabal`.
 
 ```sh
 ocaml --version
-The OCaml toplevel, version 4.14.2
+The OCaml toplevel, version 5.1.0
 
 dune --version
 3.17.2
@@ -191,4 +191,25 @@ tables of the results from which the graphs are derived are located in `Cobb_PBT
 
 ### RQ4
 
-Figure 14 TODO
+Figure 14 is generated from running Luck and a simple enumerator for each of the
+initial parameter sets.
+
+In `Cobb_PBT`
+
+```sh
+python scripts/run_luck.py
+```
+
+Note the at the latter will take much longer because we expect the default
+generators to time out for many of the runs. (The timeout is set to 5 minutes
+per variation, which will be hit in 8 variations).
+
+```sh
+opam exec -- dune exec enumeration
+```
+
+Then to generate Figure 14 in `Cobb_PBT/graphs/table3_graph.png`
+
+```sh
+python scripts/line_graph.py
+```
