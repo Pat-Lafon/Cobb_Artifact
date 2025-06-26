@@ -60,12 +60,12 @@ Z3 version 4.15.1 - 64 bit
 
 ### Getting a lay of the land
 
-This artifact is divided into two projects: 
+This artifact is divided into two projects:
   1. `Cobb`: the implementation of our type-guided input repair algorithm. `Cobb`
     uses a modified version of `Poirot`, the coverage-type checker described in
-    `Covering All the Bases: Type-Based Verification of Test Input Generators` by Zhou et al. 
+    `Covering All the Bases: Type-Based Verification of Test Input Generators` by Zhou et al.
   2. `Cobb_PBT`: the scripts needed to reproduce the evaluation of Cobb presented
-    in the paper. 
+    in the paper.
 
 
 ## Build/Install
@@ -140,7 +140,7 @@ opam install alcotest fileutils
 dune build
 ```
 
-Note that `dune` may raise the following error when building part of the `qcheck` library. 
+Note that `dune` may raise the following error when building part of the `qcheck` library.
 
 ```
 File "qcheck/src/ppx_deriving_qcheck/ppx_deriving_qcheck.ml", line 60, characters 18-59:
@@ -150,8 +150,8 @@ Error: This pattern matches values of type 'a * 'b * 'c
        but a pattern was expected which matches values of type
          cases = case list
 ```
-Not to worry, this artifact does not depend on the code that throws this error, 
-and the build succeeds despite it, so this error message can be safely disregarded. 
+Not to worry, this artifact does not depend on the code that throws this error,
+and the build succeeds despite it, so this error message can be safely disregarded.
 
 ## Running
 
@@ -168,8 +168,8 @@ currently included), just run `make results` and view the produced latex table.
 
 ### RQ2/3
 
-The data for Figure 11, Figure 12, and Figure 13 is produced by running the 
-following commands in the `Cobb_PBT` directory: 
+The data for Figure 11, Figure 12, and Figure 13 is produced by running the
+following commands in the `Cobb_PBT` directory:
 
 ```sh
 export QCHECK_MSG_INTERVAL=2000.0 && dune exec Cobb_PBT -- eval2
@@ -177,14 +177,17 @@ export QCHECK_MSG_INTERVAL=2000.0 && dune exec Cobb_PBT -- eval3
 ```
 
 This will take a few minutes (potentially longer if running inside of docker).
-For some of the longer running benchmarks, e.g., `unique_list`, it may look like
-the script is stuck, but just be patient. 
+For some longer running benchmarks, e.g., `unique_list`, it may look like
+the script is stuck, but just be patient.
 
-The results are then visualized into tables by
+The results are then visualized into the Figures 11, 12, 13 by
 
 ```sh
 make results
 ```
+
+and then viewing the graphs located in `Cobb_PBT/graphs/`. The consolidated csv
+tables of the results from which the graphs are derived are located in `Cobb_PBT/csv/*`
 
 ### RQ4
 
