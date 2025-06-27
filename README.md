@@ -158,12 +158,28 @@ and the build succeeds despite it, so this error message can be safely disregard
 ### RQ1
 
 The results in Table 1 can be reproduced by running Cobb on each of the
-benchmark files in `data/validation/*`. We provide a helpful script for this as
-`python3 scripts/synth.py underapproximation_type/data/validation/sizedlist/`
-(TODO: currently doesn't work because it's multithreading is clashing with the
-solver file) or each file can be run manually for easy inspection.
+benchmark files in `data/validation/*`. We provide a helpful script for this
+which can be run on each benchmark directory:
 
-Once all of the data has been collected(or just using the results files
+`python3 scripts/synth.py underapproximation_type/data/validation/sizedlist/`
+`python3 scripts/synth.py underapproximation_type/data/validation/sortedlist/`
+`python scripts/synth.py underapproximation_type/data/validation/uniquelist/`
+`python scripts/synth.py underapproximation_type/data/validation/duplicatelist/`
+`python scripts/synth.py underapproximation_type/data/validation/even_list/`
+`python scripts/synth.py underapproximation_type/data/validation/depthtree/`
+`python scripts/synth.py underapproximation_type/data/validation/complete_tree/`
+
+
+After each invocation like:
+`dune exec Cobb --no-buffer -- synthesis data/validation/uniquelist/prog1.ml`
+The corresponding files will be created/updated: `prog1.ml.abd` which contains
+the abduced type, `prog1.ml.syn` which contains the synthesized generator, and
+`prog1.ml.result.csv` which contains some statistics about the synthesis
+process. In general, we only expect minor changes in the time across various
+stages(though different hardware and environments may cause changes in solver
+behavior leading to deviations).
+
+Once all the data has been collected(or just using the results files
 currently included), just run `make results` and view the produced latex table.
 
 ### RQ2/3
