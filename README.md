@@ -121,7 +121,7 @@ Set up a switch and install the specified dependencies in the opam file. This
 should be sufficient to build the project.
 
 ```sh
-cd Cobb && opam switch create ./ --deps-only
+cd Cobb && opam switch create ./ --deps-only && opam install ocolor dolog yojson alcotest ounit2
 eval $(opam env)
 dune build
 ```
