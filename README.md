@@ -27,14 +27,15 @@ Figure 13, and Figure 14). We provide our modified version of Poirot (from
 will provide a docker image of this with the necessary dependencies and a
 sufficient set of package management files to compile this project locally.
 
-Note that this project uses the following Z3 version and was run on an 2020 M1
-13-inch MacBook Pro with 8 GB of memory. Getting as close to this setup as
-possible, such as using this exact version of Z3, is crucial to reliable
-producing these results. SMT solvers are notoriously
-unstable(<https://www.contrib.andrew.cmu.edu/~bparno/papers/mariposa.pdf>) along
-multiple dimensions and small differences can cause the solver to run for a
-different amount of time or return an inconclusive result(Which will alter the
-steps/result of the synthesis procedure).
+Note that this project uses the following Z3 version and was run on an
+2020 M1 13-inch MacBook Pro with 8 GB of memory. Getting as close to
+this setup as possible, such as using this exact version of Z3, is
+crucial to reliable producing these results. SMT solvers are known to
+be
+[unstable](<https://www.contrib.andrew.cmu.edu/~bparno/papers/mariposa.pdf>)
+along multiple dimensions and small differences can cause the solver
+to run for a different amount of time or return an inconclusive
+result, which may alter the result of the synthesis procedure.
 
 ```sh
 z3 --version
@@ -60,13 +61,12 @@ Z3 version 4.15.1 - 64 bit
 
 ### Getting a lay of the land
 
-This artifact is divided into two projects:
+This artifact is comprised of two projects:
   1. `Cobb`: the implementation of our type-guided input repair algorithm. `Cobb`
     uses a modified version of `Poirot`, the coverage-type checker described in
     `Covering All the Bases: Type-Based Verification of Test Input Generators` by Zhou et al.
   2. `Cobb_PBT`: the scripts needed to reproduce the evaluation of Cobb presented
     in the paper.
-
 
 ## Build/Install
 
@@ -108,10 +108,12 @@ z3 --version
 Z3 version 4.15.1 - 64 bit
 ```
 
-For running the data processing scripts, we assume a `python3` installation with
-the `tabulate`, `numpy` and `matplotlib` packages. We suggest `uv`, `uv venv && uv pip install numpy tabulate matplotlib && source .venv/bin/activate`
+For running the data processing scripts, we assume a `python3`
+installation with the `tabulate`, `numpy` and `matplotlib`
+packages. We suggest `uv`, `uv venv && uv pip install numpy tabulate
+matplotlib && source .venv/bin/activate`
 
-FOR RUNNING THIS FROM GITHUB:
+#### To install the artifact from GitHub:
 - clone with the `--recursive flag`
 - or use `git submodule update --init --recursive` after cloning
 
@@ -142,7 +144,7 @@ dune build
 
 Note that `dune` may raise the following error when building part of the `qcheck` library.
 
-```
+```sh
 File "qcheck/src/ppx_deriving_qcheck/ppx_deriving_qcheck.ml", line 60, characters 18-59:
 60 |   | Pexp_function (fargs, _constraint, Pfunction_body expr) ->
                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -161,30 +163,34 @@ The results in Table 1 can be reproduced by running Cobb on each of the
 benchmark files in `data/validation/*`. We provide a helpful script for this
 which can be run on each benchmark directory:
 
-`python3 scripts/synth.py underapproximation_type/data/validation/sizedlist/`
-`python3 scripts/synth.py underapproximation_type/data/validation/sortedlist/`
-`python scripts/synth.py underapproximation_type/data/validation/uniquelist/`
-`python scripts/synth.py underapproximation_type/data/validation/duplicatelist/`
-`python scripts/synth.py underapproximation_type/data/validation/even_list/`
-`python scripts/synth.py underapproximation_type/data/validation/depthtree/`
-`python scripts/synth.py underapproximation_type/data/validation/complete_tree/`
-
-
-After each invocation like:
+- `python3 scripts/synth.py underapproximation_type/data/validation/sizedlist/`
+- `python scripts/synth.py underapproximation_type/data/validation/even_list/`
+- `python3 scripts/synth.py underapproximation_type/data/validation/sortedlist/`
+- `python scripts/synth.py underapproximation_type/data/validation/duplicatelist/`
+- `python scripts/synth.py underapproximation_type/data/validation/uniquelist/`
+- `python scripts/synth.py underapproximation_type/data/validation/rbtree/`
+- `python scripts/synth.py underapproximation_type/data/validation/depth_bst/`
+- `python scripts/synth.py underapproximation_type/data/validation/depthtree/`
+- `python scripts/synth.py underapproximation_type/data/validation/complete_tree/`
+  
+Each invocation of the form:
 `dune exec Cobb --no-buffer -- synthesis data/validation/uniquelist/prog1.ml`
-The corresponding files will be created/updated: `prog1.ml.abd` which contains
-the abduced type, `prog1.ml.syn` which contains the synthesized generator, and
-`prog1.ml.result.csv` which contains some statistics about the synthesis
-process. In general, we only expect minor changes in the time across various
-stages(though different hardware and environments may cause changes in solver
-behavior leading to deviations).
+Will create / update the following files:
+- `prog1.ml.abd`: contains the abduced type,
+- `prog1.ml.syn`: contains the synthesized generator, and
+- `prog1.ml.result.csv`: contains some statistics about the synthesis process.
 
-Once all the data has been collected(or just using the results files
-currently included), just run `make results` and view the produced latex table.
+In general, we only expect minor changes in the time across various
+stages (though different hardware and environments may cause changes in
+solver behavior leading to deviations).
+
+Once all the data has been collected (or just using the results files
+currently included in the artifact), running `make results` will
+produce a latex table aggregrating the results.
 
 ### RQ2/3
 
-The data for Figure 11, Figure 12, and Figure 13 is produced by running the
+The data for Figures 11, Figures 12, and Figures 13 is produced by running the
 following commands in the `Cobb_PBT` directory:
 
 ```sh
@@ -218,7 +224,7 @@ python3 scripts/run_luck.py
 
 Note the at the latter will take much longer because we expect the default
 generators to time out for many of the runs. (The timeout is set to 5 minutes
-per variation, which will be hit in 8 variations).
+per variation, which will be hit in 8 variations.)
 
 ```sh
 opam exec -- dune exec enumeration
