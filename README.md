@@ -159,7 +159,7 @@ and the build succeeds despite it, so this error message can be safely disregard
 
 The results in Table 1 can be reproduced by running Cobb on each of the
 benchmark files in `data/validation/*`. We provide a helpful script for this as
-`python scripts/synth.py underapproximation_type/data/validation/sizedlist/`
+`python3 scripts/synth.py underapproximation_type/data/validation/sizedlist/`
 (TODO: currently doesn't work because it's multithreading is clashing with the
 solver file) or each file can be run manually for easy inspection.
 
@@ -197,7 +197,7 @@ initial parameter sets.
 In `Cobb_PBT`
 
 ```sh
-python scripts/run_luck.py
+python3 scripts/run_luck.py
 ```
 
 Note the at the latter will take much longer because we expect the default
@@ -211,5 +211,5 @@ opam exec -- dune exec enumeration
 Then to generate Figure 14 in `Cobb_PBT/graphs/table3_graph.png`
 
 ```sh
-python scripts/line_graph.py
+python3 scripts/line_graph.py
 ```
