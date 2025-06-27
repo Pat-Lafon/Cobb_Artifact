@@ -42,7 +42,7 @@ z3 --version
 Z3 version 4.15.1 - 64 bit
 ```
 
-### Differences since initial submission.
+### Differences from Initial Submission
 
 - Since the initial submission, Cobb's use of a smt solver portfolio has
   improved with an additional solver variation and a `first-to-succeed`
@@ -59,7 +59,7 @@ Z3 version 4.15.1 - 64 bit
   - Add a table with the percentage of non-unique terms from the benchmarks to
     the appendix.
 
-### Getting a lay of the land
+### Getting a Lay of the Land
 
 This artifact is comprised of two projects:
   1. `Cobb`: the implementation of our type-guided input repair algorithm. `Cobb`
