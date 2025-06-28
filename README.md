@@ -14,7 +14,8 @@ provided in a form that is evaluable and reproducible.
 Data-Availability Statement
 
 Our supplementary material includes an anonymized artifact. This artifact contains the OCaml
-source code for Cobb and of the modified dependencies, our suite of benchmark programs with results and scripts used to produce our experimental results. We intend to submit this artifact for
+source code for Cobb and of the modified dependencies, our suite of benchmark programs with
+results and scripts used to produce our experimental results. We intend to submit this artifact for
 evaluation by the artifact evaluation committee should this paper be accepted.
 ```
 
