@@ -69,7 +69,14 @@ This artifact consists of two projects:
   2. `Cobb_PBT`: the scripts needed to reproduce the evaluation of Cobb presented
     in the paper.
 
-## Build/Install
+## Hardware Requirements
+
+All experiments were run on a 2020 M1 13-inch MacBook Pro with 8 GB of memory.
+As long as you use the provided Docker image or compile the program locally this
+is sufficient. Because of some inefficiencies with Docker on Mac, building the
+Docker image yourself will require more than 8GB of RAM
+
+## Getting Started with Build/Install
 
 ### Docker
 
@@ -161,7 +168,7 @@ Change directories to the `Luck` subdirectory in `Cobb_PBT` and build the
 Haskell project using `cabal build luck`(note this may take a long time inside
 the docker image).
 
-## Running
+## Step by Step instructions for running
 
 ### RQ1
 
@@ -241,3 +248,54 @@ Then to generate Figure 14 in `Cobb_PBT/graphs/table3_graph.png`
 ```sh
 python3 scripts/line_graph.py
 ```
+
+## Reusability
+
+The core reusable artifact is Cobb itself(`~/Cobb`). For debuggability
+reasons(being able to also easily invoke the typechecker on its own against the
+program files), the synthesis benchmarks are located in
+`~/Cobb/underapproximation_type/data/validation/*`. We expect that the generator
+file that is passed in to Cobb is located alongside the `meta-config.json` file
+but otherwise there should not be other implicit path assumptions. Pointers to
+key files and various synthesis parameters are located in this config file.
+
+The abduction procedure expects a list of templates which are supplied in the
+meta-config.json via a file `prim_path.templates` and then by name in
+`abd_templates`. It is often convenient to run abduction just on its own
+`dune exec Cobb -- abduction data/validation/sizedlist/prog1.ml`. Just note that
+this is mainly used as a debugging tool; so it will compare the abduced type
+against that in the file and will error if they are different.
+
+Adding a component involves providing a base type signature in the file located at
+`prim_path.normal_typing`, a coverage type signature in
+`prim_path.coverage_typing`, and then specify the name of the component in the
+`comp_path` file. If you want to remove a component from synthesis(other than
+the recursive call as a component as this is constructed internally), then you
+only need to remove it from the `comp_path`. It is still available to the type
+checker.
+
+Method predicates to be used in type signatures can be added by specifying them
+in `prim_path.normal_typing`. Additionally, the semantics of the method
+predicates are provided as a series of axioms in `prim_path.axioms`. It is often
+advantageous to give the solver a somewhat minimal set of axioms as additional
+unnecessary axioms can cause inconclusive results. Most/all the axioms used
+in Cobb were mechanically translated to Coq and proven in
+`underapproximation_type/data/validation/proofs`. Most axioms were fairly
+trivial to verify.
+
+Of course the generator itself can be modified as if it was a mostly normal
+ocaml function where each let-bound variable must have a type annotation. The
+expected coverage type is always included in the file, uses the style of
+annotation which is used in Poirot, and must have the same name/set of arguments
+as the generator being repaired.
+
+If you ever want to skip the abduction step and hard-code the missing coverage,
+you can set the `use_missing_coverage_file` flag in the config.
+
+The underlying smt solver is rather unstable with respect to the queries being
+submitted. The most common knob to turn is to adjust the rlimit fields set in
+the config file. They are currently set at a reasonable upper bound which was
+sufficient on the authors' machine but may be different for alternative queries
+or in different environments. If type-checking/synthesis is not behaving as you
+expect, the most common reason is that the solver hit a resource limit on a
+query that it would have otherwise eventually returned a conclusive answer for.
