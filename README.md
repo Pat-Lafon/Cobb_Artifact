@@ -157,6 +157,10 @@ Error: This pattern matches values of type 'a * 'b * 'c
 Not to worry, this artifact does not depend on the code that throws this error,
 and the build succeeds despite it, so this error message can be safely disregarded.
 
+Change directories to the `Luck` subdirectory in `Cobb_PBT` and build the
+Haskell project using `cabal build luck`(note this may take a long time inside
+the docker image).
+
 ## Running
 
 ### RQ1
