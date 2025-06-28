@@ -30,10 +30,10 @@ sufficient set of package management files to compile this project locally.
 Note that this project uses the following Z3 version and was run on an
 2020 M1 13-inch MacBook Pro with 8 GB of memory. Getting as close to
 this setup as possible, such as using this exact version of Z3, is
-crucial to reliable producing these results. SMT solvers are known to
+crucial to reliably producing these results. SMT solvers are known to
 be
 [unstable](<https://www.contrib.andrew.cmu.edu/~bparno/papers/mariposa.pdf>)
-along multiple dimensions and small differences can cause the solver
+along multiple dimensions, and small differences can cause the solver
 to run for a different amount of time or return an inconclusive
 result, which may alter the result of the synthesis procedure.
 
@@ -44,7 +44,7 @@ Z3 version 4.15.1 - 64 bit
 
 ### Differences from Initial Submission
 
-- Since the initial submission, Cobb's use of a smt solver portfolio has
+- Since the initial submission, Cobb's use of a SMT solver portfolio has
   improved with an additional solver variation and a `first-to-succeed`
   approach. While the algorithm has not changed, the overall runtime is on
   average reduced.
@@ -72,7 +72,7 @@ This artifact consists of two projects:
 
 ### Docker
 
-We provide a docker image with the sufficient dependencies install which can be
+We provide a docker image with the sufficient dependencies installed which can be
 constructed from the included dockerfile with a docker installation.
 
 (Change the platform flag to one appropriate for your setup).
@@ -86,7 +86,7 @@ docker run --pull never --platform linux/amd64 -it cobb_artifact
 
 ### Locally Installing Dependencies
 
-The set of dependencies Cobb expects are an installation of `ocaml`, it's
+The set of dependencies Cobb expects are an installation of `ocaml`, its
 package manager `dune`, an installation of `z3`(which must be available on your
 path as it is called via a shell process), and an installation of `ghc` with
 its package manager `cabal`.
@@ -135,7 +135,7 @@ Verify Cobb by running the simplest synthesis benchmark:
 cd underapproximation_type/ && dune exec Cobb -- synthesis data/validation/sizedlist/prog1.ml
 ```
 
-We can now reuse the same switch for Cobb_PBT by just adding 2 dependencies:
+We can now reuse the same switch for Cobb_PBT by just adding 6 dependencies:
 
 ```sh
 cd ../../Cobb_PBT
@@ -187,7 +187,7 @@ solver behavior leading to deviations).
 
 Once all the data has been collected (or just using the results files
 currently included in the artifact), running `make results` will
-produce a latex table aggregrating the results.
+produce a LaTeX table aggregrating the results.
 
 ### RQ2/3
 
