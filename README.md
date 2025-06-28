@@ -61,7 +61,7 @@ Z3 version 4.15.1 - 64 bit
 
 ### Getting a Lay of the Land
 
-This artifact is comprised of two projects:
+This artifact consists of two projects:
   1. `Cobb`: the implementation of our type-guided input repair algorithm. `Cobb`
     uses a modified version of `Poirot`, the coverage-type checker described in
     `Covering All the Bases: Type-Based Verification of Test Input Generators` by Zhou et al.
@@ -81,6 +81,7 @@ constructed from the included dockerfile with a docker installation.
 docker load < <(gunzip -c opam-z3.tar.gz) # We supply a base image with opam and z3 4.15.1 installed given the higher ram requirements to compile z3 inside of doc on macs TODO: Store this instead on dockerhub since I can't commit to github
 docker build --platform linux/amd64 -t cobb_artifact .
 docker run --pull never --platform linux/amd64 -it cobb_artifact
+# You may need to run `eval $(opam env)` again inside of the running image
 ```
 
 ### Locally Installing Dependencies
@@ -110,8 +111,8 @@ Z3 version 4.15.1 - 64 bit
 
 For running the data processing scripts, we assume a `python3`
 installation with the `tabulate`, `numpy` and `matplotlib`
-packages. We suggest `uv`, `uv venv && uv pip install numpy tabulate
-matplotlib && source .venv/bin/activate`
+packages. We suggest `uv`,
+`uv venv && uv pip install numpy tabulate matplotlib && source .venv/bin/activate`
 
 #### To install the artifact from GitHub:
 - clone with the `--recursive flag`
@@ -172,7 +173,7 @@ which can be run on each benchmark directory:
 - `python3 scripts/synth.py underapproximation_type/data/validation/depth_bst/`
 - `python3 scripts/synth.py underapproximation_type/data/validation/depthtree/`
 - `python3 scripts/synth.py underapproximation_type/data/validation/complete_tree/`
-  
+
 Each invocation of the form:
 `dune exec Cobb --no-buffer -- synthesis data/validation/uniquelist/prog1.ml`
 Will create / update the following files:
