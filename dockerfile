@@ -3,6 +3,15 @@ FROM opam-z3:latest
 # We are checking out specific commits, ignore the detachedHead warning
 RUN git config --global advice.detachedHead false
 
+# Install GHC and Cabal
+RUN apt-get update && apt-get install -y \
+    ghc \
+    cabal-install \
+    && rm -rf /var/lib/apt/lists/*
+
+# Update cabal package list
+RUN cabal update
+
 # Pull in my code projects
 RUN git clone https://github.com/Pat-Lafon/Cobb.git && cd Cobb && git submodule update --init --recursive
 
