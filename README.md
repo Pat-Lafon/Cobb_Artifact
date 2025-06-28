@@ -164,14 +164,14 @@ benchmark files in `data/validation/*`. We provide a helpful script for this
 which can be run on each benchmark directory:
 
 - `python3 scripts/synth.py underapproximation_type/data/validation/sizedlist/`
-- `python scripts/synth.py underapproximation_type/data/validation/even_list/`
+- `python3 scripts/synth.py underapproximation_type/data/validation/even_list/`
 - `python3 scripts/synth.py underapproximation_type/data/validation/sortedlist/`
-- `python scripts/synth.py underapproximation_type/data/validation/duplicatelist/`
-- `python scripts/synth.py underapproximation_type/data/validation/uniquelist/`
-- `python scripts/synth.py underapproximation_type/data/validation/rbtree/`
-- `python scripts/synth.py underapproximation_type/data/validation/depth_bst/`
-- `python scripts/synth.py underapproximation_type/data/validation/depthtree/`
-- `python scripts/synth.py underapproximation_type/data/validation/complete_tree/`
+- `python3 scripts/synth.py underapproximation_type/data/validation/duplicatelist/`
+- `python3 scripts/synth.py underapproximation_type/data/validation/uniquelist/`
+- `python3 scripts/synth.py underapproximation_type/data/validation/rbtree/`
+- `python3 scripts/synth.py underapproximation_type/data/validation/depth_bst/`
+- `python3 scripts/synth.py underapproximation_type/data/validation/depthtree/`
+- `python3 scripts/synth.py underapproximation_type/data/validation/complete_tree/`
   
 Each invocation of the form:
 `dune exec Cobb --no-buffer -- synthesis data/validation/uniquelist/prog1.ml`
