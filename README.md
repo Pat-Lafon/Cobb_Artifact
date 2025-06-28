@@ -215,6 +215,14 @@ This will take a few minutes (potentially longer if running inside of docker).
 For some longer running benchmarks, e.g., `unique_list`, it may look like
 the script is stuck, but just be patient.
 
+The results for RQ2 are stored in `Cobb_PBT/bin/{benchmark_name}` alongside the
+corresponding reference generator(`prog.ml`), the Cobb synthesized generator
+`progX_syn.ml`, the safety repaired generator `progX_safe.ml`, and the coverage
+repaired generator `progX_cov.ml`.
+
+The results
+for RQ3 are stored in `Cobb_PBT/bin/completeness_data/{benchmark_name}`
+
 The results are then visualized into the Figures 11, 12, 13 by
 
 ```sh
@@ -242,6 +250,8 @@ per variation, which will be hit in 8 variations.)
 ```sh
 opam exec -- dune exec enumeration
 ```
+
+The data for this step is stored in `Cobb_PBT/bin/enumeration_data/*.csv.results`.
 
 Then to generate Figure 14 in `Cobb_PBT/graphs/table3_graph.png`
 
