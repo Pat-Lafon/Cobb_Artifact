@@ -15,14 +15,14 @@ Data-Availability Statement
 
 Our supplementary material includes an anonymized artifact. This artifact contains the OCaml
 source code for Cobb and of the modified dependencies, our suite of benchmark programs with
-results and scripts used to produce our experimental results. We intend to submit this artifact for
-evaluation by the artifact evaluation committee should this paper be accepted.
+results and scripts used to produce our experimental results. We intend to submit this artifact
+for evaluation by the artifact evaluation committee should this paper be accepted.
 ```
 
 ### Contents and Claims
 
 This artifact will contain the source code for Cobb, the benchmark files and
-outputted results for RQ's 1-4 (specifically Tables 1, Figure 11, Figure 12,
+outputted results for RQ's 1-4 (specifically Table 1, Figure 11, Figure 12,
 Figure 13, and Figure 14). We provide our modified version of Poirot (from
 `Covering All the Bases: Type-Based Verification of Test Input Generators`). We
 will provide a docker image of this with the necessary dependencies and a
@@ -76,7 +76,7 @@ As long as you use the provided Docker image or compile the program locally this
 is sufficient. Because of some inefficiencies with Docker on Mac, building the
 Docker image yourself will require more than 8GB of RAM
 
-## Getting Started with Build/Install
+## Getting Started with Install/Build
 
 ### Docker
 
@@ -91,8 +91,8 @@ docker run --pull never --platform linux/amd64 -it cobb_artifact
 # You may need to run `eval $(opam env)` again inside of the running image
 ```
 
-Alternatively the docker image can be build from a base image that we also
-supply(which contains just opam and Z3 which has a higher Ram requirement). The
+Alternatively the docker image can be built from a base image that we also
+supply (which contains just opam and Z3 which has a higher Ram requirement). The
 base image can be built with the `base_z3_dockerfile` if preferred, otherwise:
 ```sh
 docker load < <(gunzip -c opam-z3.tar.gz)
@@ -129,8 +129,7 @@ Z3 version 4.15.1 - 64 bit
 
 For running the data processing scripts, we assume a `python3`
 installation with the `tabulate`, `numpy` and `matplotlib`
-packages. We suggest `uv`,
-`uv venv && uv pip install numpy tabulate matplotlib && source .venv/bin/activate`
+packages. We suggest using `uv` in `uv venv && uv pip install numpy tabulate matplotlib && source .venv/bin/activate`
 
 #### To install the artifact from GitHub:
 - clone with the `--recursive flag`
@@ -175,10 +174,13 @@ Not to worry, this artifact does not depend on the code that throws this error,
 and the build succeeds despite it, so this error message can be safely disregarded.
 
 Change directories to the `Luck` subdirectory in `Cobb_PBT` and build the
-Haskell project using `cabal build luck`(note this may take a long time inside
-the docker image).
+Haskell project using: 
+```sh
+cabal build luck
+```
+(note this may take a long time inside the docker image).
 
-## Step by Step instructions for running
+## Step by Step Instructions for Running
 
 ### RQ1
 
@@ -208,12 +210,14 @@ stages (though different hardware and environments may cause changes in
 solver behavior leading to deviations).
 
 Once all the data has been collected (or just using the results files
-currently included in the artifact), running `make results` will
-produce a LaTeX table aggregrating the results.
+currently included in the artifact), generate Table 1 as a LaTeX table printed to stdout
+```sh
+make results
+```
 
 ### RQ2/3
 
-The data for Figures 11, Figures 12, and Figures 13 is produced by running the
+The data for Figure 11, Figure 12, and Figure 13 is produced by running the
 following commands in the `Cobb_PBT` directory:
 
 ```sh
