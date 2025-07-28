@@ -216,6 +216,12 @@ currently included in the artifact), generate Table 1 as a LaTeX table printed t
 ```sh
 make results
 ```
+#### To use the synthesized generators:
+The synthesized generators from `Cobb` can used in `Cobb_PBT` after a couple syntactic transformations. The script
+```sh
+python3 scripts/frequify.py
+```
+will translate each program in `Cobb/underapproximation_type/data/validation/*/prog.ml.syn` into runnable Ocaml in `Cobb_PBT/bin/*/prog_syn.ml`.
 
 ### RQ2/3
 
@@ -313,10 +319,14 @@ in Cobb were mechanically translated to Coq and proven in
 trivial to verify.
 
 Of course the generator itself can be modified as if it is a mostly standard
-ocaml function where each let-bound variable must have a type annotation. The
-expected coverage type is always included in the file using Poirot's style of
-annotation, and must have the same name/set of arguments
+Ocaml function where each let-bound variable must have a type annotation.
+The
+expected coverage type is always included in the file, uses the style of
+annotation which is used in Poirot, and must have the same name/set of arguments
 as the generator being repaired.
+However, they cannot be directly run by `Cobb_PBT`
+without `python3 scripts/frequify.py`, which translates the programs into standard
+Ocaml, and adjusts the choice operators to reduce skewing.
 
 If you ever want to skip the abduction step and hard-code the missing coverage,
 you can set the `use_missing_coverage_file` flag in `meta-config.json`.
