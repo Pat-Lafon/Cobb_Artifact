@@ -276,15 +276,15 @@ python3 scripts/line_graph.py
 ## Reusability
 
 The core reusable artifact is Cobb itself(`~/Cobb`). For debuggability
-reasons(being able to also easily invoke the typechecker on its own against the
+reasons (and ease of invoking the typechecker on its own against the
 program files), the synthesis benchmarks are located in
 `~/Cobb/underapproximation_type/data/validation/*`. We expect that the generator
-file that is passed in to Cobb is located alongside the `meta-config.json` file
+file that is passed in to Cobb is located alongside its `meta-config.json` file
 but otherwise there should not be other implicit path assumptions. Pointers to
 key files and various synthesis parameters are located in this config file.
 
-The abduction procedure expects a list of templates which are supplied in the
-meta-config.json via a file `prim_path.templates` and then by name in
+The abduction procedure expects a list of templates which are supplied in
+`meta-config.json` via a file `prim_path.templates` and then by name in
 `abd_templates`. It is often convenient to run abduction just on its own
 `dune exec Cobb -- abduction data/validation/sizedlist/prog1.ml`. Just note that
 this is mainly used as a debugging tool; so it will compare the abduced type
@@ -292,11 +292,10 @@ against that in the file and will error if they are different.
 
 Adding a component involves providing a base type signature in the file located at
 `prim_path.normal_typing`, a coverage type signature in
-`prim_path.coverage_typing`, and then specify the name of the component in the
-`comp_path` file. If you want to remove a component from synthesis(other than
-the recursive call as a component as this is constructed internally), then you
-only need to remove it from the `comp_path`. It is still available to the type
-checker.
+`prim_path.coverage_typing`, and the name of the component in the
+`comp_path` file. If you want to remove a component from synthesis, then you
+only need to remove it from `comp_path` (it is not possible to remove
+the recursive call as a component as this is constructed internally). It is still available to the type checker, however.
 
 Method predicates to be used in type signatures can be added by specifying them
 in `prim_path.normal_typing`. Additionally, the semantics of the method
@@ -307,17 +306,17 @@ in Cobb were mechanically translated to Coq and proven in
 `underapproximation_type/data/validation/proofs`. Most axioms were fairly
 trivial to verify.
 
-Of course the generator itself can be modified as if it was a mostly normal
+Of course the generator itself can be modified as if it is a mostly standard
 ocaml function where each let-bound variable must have a type annotation. The
-expected coverage type is always included in the file, uses the style of
-annotation which is used in Poirot, and must have the same name/set of arguments
+expected coverage type is always included in the file using Poirot's style of
+annotation, and must have the same name/set of arguments
 as the generator being repaired.
 
 If you ever want to skip the abduction step and hard-code the missing coverage,
-you can set the `use_missing_coverage_file` flag in the config.
+you can set the `use_missing_coverage_file` flag in `meta-config.json`.
 
 The underlying smt solver is rather unstable with respect to the queries being
-submitted. The most common knob to turn is to adjust the rlimit fields set in
+submitted. The most common knob to turn is to adjust the `rlimit` fields set in
 the config file. They are currently set at a reasonable upper bound which was
 sufficient on the authors' machine but may be different for alternative queries
 or in different environments. If type-checking/synthesis is not behaving as you
