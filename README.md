@@ -334,12 +334,10 @@ trivial to verify.
 
 Of course the generator itself can be modified as if it is a mostly standard
 Ocaml function where each let-bound variable must have a type annotation.
-The
-expected coverage type is always included in the file, uses the style of
-annotation which is used in Poirot, and must have the same name/set of arguments
-as the generator being repaired.
-However, they cannot be directly run by `Cobb_PBT`
-without `python3 scripts/frequify.py`, which translates the programs into standard
+The expected coverage type is always included in the file using Poirot's style of
+annotation, and must have the same name/set of arguments as the generator being repaired.
+However, they cannot be directly run by `Cobb_PBT` without 
+`python3 scripts/frequify.py`, which translates the programs into standard
 Ocaml, and adjusts the choice operators to reduce skewing.
 
 If you ever want to skip the abduction step and hard-code the missing coverage,
