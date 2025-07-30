@@ -256,7 +256,54 @@ tables of the results from which the graphs are derived are located in `Cobb_PBT
 
 ### RQ4
 
-TODO: Add instructions for excess/imprecise
+The following additional studies are done like RQ1 in the `Cobb` directory. The
+output files are the exact same, just operating in a different folder.
+
+#### Run excess benchmarks
+
+```bash
+python scripts/synth.py underapproximation_type/data/validation/sizedlist_excess/
+python scripts/synth.py underapproximation_type/data/validation/uniquelist_excess/
+python scripts/synth.py underapproximation_type/data/validation/sortedlist_excess/
+python scripts/synth.py underapproximation_type/data/validation/duplicatelist_excess/
+python scripts/synth.py underapproximation_type/data/validation/even_list_excess/
+python scripts/synth.py underapproximation_type/data/validation/complete_tree_excess/
+python scripts/synth.py underapproximation_type/data/validation/depthtree_excess/
+python scripts/synth.py underapproximation_type/data/validation/depth_bst_excess/
+```
+
+##### Comparing results
+
+Compare performance differences:
+
+```bash
+python scripts/excess_results.py
+```
+
+This generates CSV comparison files in the `data/` folder.
+
+#### Running imprecise benchmarks
+
+##### What are imprecise benchmarks?
+
+Imprecise benchmarks test synthesis process when missing a key component. Each
+`_imprecise` directory contains programs with a hand selected list of components
+from the excess benchmarks minus one crucial component
+
+##### Running the imprecise benchmarks
+
+```bash
+python scripts/synth_imprecise.py underapproximation_type/data/validation/sizedlist_imprecise/
+python scripts/synth_imprecise.py underapproximation_type/data/validation/uniquelist_imprecise/
+python scripts/synth_imprecise.py underapproximation_type/data/validation/sortedlist_imprecise/
+python scripts/synth_imprecise.py underapproximation_type/data/validation/duplicatelist_imprecise/
+python scripts/synth_imprecise.py underapproximation_type/data/validation/even_list_imprecise/
+python scripts/synth_imprecise.py underapproximation_type/data/validation/complete_tree_imprecise/
+python scripts/synth_imprecise.py underapproximation_type/data/validation/depthtree_imprecise/
+python scripts/synth_imprecise.py underapproximation_type/data/validation/depth_bst_imprecise/
+python scripts/synth_imprecise.py underapproximation_type/data/validation/rbtree_imprecise/
+```
+
 
 ### RQ5
 
