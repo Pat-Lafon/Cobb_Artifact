@@ -105,6 +105,9 @@ docker run --pull never --platform linux/amd64 -it cobb_artifact
 # You may need to run `eval $(opam env)` again inside of the running image
 ```
 
+If you are using the Docker path, you should be able to skip the following local
+installation steps though peruse them, so you have an idea of the image environment.
+
 ### Locally Installing Dependencies
 
 The set of dependencies Cobb expects are an installation of `ocaml`, its
