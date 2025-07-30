@@ -22,8 +22,8 @@ for evaluation by the artifact evaluation committee should this paper be accepte
 ### Contents and Claims
 
 This artifact will contain the source code for Cobb, the benchmark files and
-outputted results for RQ's 1-4 (specifically Table 1, Figure 11, Figure 12,
-Figure 13, and Figure 14). We provide our modified version of Poirot (from
+outputted results for RQ's 1-5 (specifically Table 1, Table 2, Table 3, Figure 11, Figure 12,
+Figure 13, and Figure 15). We provide our modified version of Poirot (from
 `Covering All the Bases: Type-Based Verification of Test Input Generators`). We
 will provide a docker image of this with the necessary dependencies and a
 sufficient set of package management files to compile this project locally.
@@ -174,7 +174,7 @@ Not to worry, this artifact does not depend on the code that throws this error,
 and the build succeeds despite it, so this error message can be safely disregarded.
 
 Change directories to the `Luck` subdirectory in `Cobb_PBT` and build the
-Haskell project using: 
+Haskell project using:
 ```sh
 cabal build luck
 ```
@@ -208,6 +208,8 @@ Will create / update the following files:
 In general, we only expect minor changes in the time across various
 stages (though different hardware and environments may cause changes in
 solver behavior leading to deviations).
+
+TODO: add STLC setup
 
 Once all the data has been collected (or just using the results files
 currently included in the artifact), generate Table 1 as a LaTeX table printed to stdout
@@ -248,7 +250,11 @@ tables of the results from which the graphs are derived are located in `Cobb_PBT
 
 ### RQ4
 
-Figure 14 is generated from running Luck and a simple enumerator for each of the
+TODO: Add instructions for excess/imprecise
+
+### RQ5
+
+Figure 15 is generated from running Luck and a simple enumerator for each of the
 initial parameter sets.
 
 In `Cobb_PBT`
@@ -267,7 +273,7 @@ opam exec -- dune exec enumeration
 
 The data for this step is stored in `Cobb_PBT/bin/enumeration_data/*.csv.results`.
 
-Then to generate Figure 14 in `Cobb_PBT/graphs/table3_graph.png`
+Then to generate Figure 15 in `Cobb_PBT/graphs/table3_graph.png`
 
 ```sh
 python3 scripts/line_graph.py
