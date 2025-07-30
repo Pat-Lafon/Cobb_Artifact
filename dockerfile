@@ -35,6 +35,8 @@ RUN opam install ounit2 --yes
 
 RUN eval $(opam env)
 
+RUN echo 'eval $(opam env)' >> ~/.bashrc
+
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 
 RUN python3 get-pip.py
