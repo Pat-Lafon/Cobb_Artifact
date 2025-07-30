@@ -80,8 +80,9 @@ Docker image yourself will require more than 8GB of RAM
 
 ### Docker
 
-We provide a Docker image with the sufficient dependencies installed which can be
-constructed from the included Dockerfile(see `dockerfile` and
+We provide a Docker image with the sufficient dependencies installed. If you
+would like, this image can be
+re-constructed from the included Dockerfile(see `dockerfile` and
 `base_z3_dockerfile`, example usage can be found in the `make image` command of
 the `Makefile`) with a Docker installation.
 
