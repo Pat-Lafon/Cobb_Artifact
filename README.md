@@ -105,7 +105,7 @@ docker run --pull never --platform linux/amd64 -it cobb_artifact
 # You may need to run `eval $(opam env)` again inside of the running image
 ```
 
-## Locally Installing Dependencies
+### Locally Installing Dependencies
 
 The set of dependencies Cobb expects are an installation of `ocaml`, its
 package manager `dune`, an installation of `z3`(which must be available on your
@@ -138,7 +138,7 @@ packages. We suggest using `uv` in `uv venv && uv pip install numpy tabulate mat
 - clone with the `--recursive flag`
 - or use `git submodule update --init --recursive` after cloning
 
-### Building
+#### Building
 
 Set up a switch and install the specified dependencies in the opam file. This
 should be sufficient to build the project.
