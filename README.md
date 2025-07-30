@@ -92,7 +92,6 @@ the `Makefile`) with a Docker installation.
 ```sh
 docker load < <(gunzip -c cobb_artifact.tar.gz)
 docker run --pull never --platform linux/amd64 -it cobb_artifact
-# You may need to run `eval $(opam env)` again inside of the running image
 ```
 
 Alternatively, the Docker image can be built from a base image that we also
@@ -197,8 +196,8 @@ cabal build luck
 ### RQ1
 
 The results in Table 1 can be reproduced by running Cobb on each of the
-benchmark files in `data/validation/*`. We provide a helpful script for this
-which can be run on each benchmark directory:
+benchmark files in `Cobb/underapproximation_type/data/validation/*`. We provide a helpful script for this
+which can be run on each benchmark directory from the `Cobb` directory:
 
 - `python3 scripts/synth.py underapproximation_type/data/validation/sizedlist/`
 - `python3 scripts/synth.py underapproximation_type/data/validation/even_list/`

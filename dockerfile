@@ -9,9 +9,8 @@ RUN apt-get update && apt-get install -y \
     cabal-install \
     && rm -rf /var/lib/apt/lists/*
 
-# Update cabal package list
-RUN cabal update
-
+# Update cabal package list - ignore signature errors
+RUN cabal update --ignore-expiry-check || true
 # Pull in my code projects
 RUN git clone https://github.com/Pat-Lafon/Cobb.git && cd Cobb && git submodule update --init --recursive
 
