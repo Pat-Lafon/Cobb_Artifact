@@ -102,7 +102,7 @@ docker run --pull never --platform linux/amd64 -it cobb_artifact
 # You may need to run `eval $(opam env)` again inside of the running image
 ```
 
-### Locally Installing Dependencies
+## Locally Installing Dependencies
 
 The set of dependencies Cobb expects are an installation of `ocaml`, its
 package manager `dune`, an installation of `z3`(which must be available on your
@@ -284,6 +284,20 @@ Then to generate Figure 15 in `Cobb_PBT/graphs/table3_graph.png`
 ```sh
 python3 scripts/line_graph.py
 ```
+
+### Counting the number of unique values (Appendix F)
+
+For the appendix, we added a quick table which collects the number of
+unique/duplicate values that the generators produce.
+
+In `Cobb_PBT`, run
+
+```sh
+opam exec -- dune exec num_unique
+```
+
+Results are stored in `Cobb_PBT/bin/unique_data/unique_results.csv.results`
+which is used to generate the corresponding table in the appendix.
 
 ## Reusability
 
