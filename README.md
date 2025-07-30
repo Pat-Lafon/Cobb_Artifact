@@ -80,8 +80,9 @@ Docker image yourself will require more than 8GB of RAM
 
 ### Docker
 
-We provide a docker image with the sufficient dependencies installed which can be
-constructed from the included dockerfile with a docker installation.
+We provide a Docker image with the sufficient dependencies installed which can be
+constructed from the included Dockerfile(see `dockerfile` and
+`base_z3_dockerfile`) with a Docker installation.
 
 (Change the platform flag to one appropriate for your setup).
 
@@ -383,7 +384,7 @@ Of course the generator itself can be modified as if it is a mostly standard
 Ocaml function where each let-bound variable must have a type annotation.
 The expected coverage type is always included in the file using Poirot's style of
 annotation, and must have the same name/set of arguments as the generator being repaired.
-However, they cannot be directly run by `Cobb_PBT` without 
+However, they cannot be directly run by `Cobb_PBT` without
 `python3 scripts/frequify.py`, which translates the programs into standard
 Ocaml, and adjusts the choice operators to reduce skewing.
 
