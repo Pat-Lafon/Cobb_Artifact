@@ -215,8 +215,6 @@ In general, we only expect minor changes in the time across various
 stages (though different hardware and environments may cause changes in
 solver behavior leading to deviations).
 
-TODO: add STLC setup
-
 Once all the data has been collected (or just using the results files
 currently included in the artifact), generate Table 1 as a LaTeX table printed to stdout
 ```sh
@@ -231,7 +229,7 @@ will translate each program in `Cobb/underapproximation_type/data/validation/*/p
 
 ### RQ2/3
 
-The data for Figure 11, Figure 12, and Figure 13 is produced by running the
+The data for Figure 11, Figure 12, and Figure 14 is produced by running the
 following commands in the `Cobb_PBT` directory:
 
 ```sh
@@ -251,7 +249,7 @@ repaired generator `progX_cov.ml`.
 The results
 for RQ3 are stored in `Cobb_PBT/bin/completeness_data/{benchmark_name}`
 
-The results are then visualized into the Figures 11, 12, 13 by
+The results are then visualized into the Figures 11, 12, 14 by
 
 ```sh
 make results
@@ -259,6 +257,9 @@ make results
 
 and then viewing the graphs located in `Cobb_PBT/graphs/`. The consolidated csv
 tables of the results from which the graphs are derived are located in `Cobb_PBT/csv/*`
+
+The table1_* graphs correspond to Figure 11, table2_* corresponds to Figure 12,
+table_3 corresponds to Figure 14
 
 ### RQ4
 
