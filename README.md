@@ -25,7 +25,7 @@ This artifact will contain the source code for Cobb, the benchmark files and
 outputted results for RQ's 1-5 (specifically Table 1, Table 2, Table 3, Figure 11, Figure 12,
 Figure 13, and Figure 15). We provide our modified version of Poirot (from
 `Covering All the Bases: Type-Based Verification of Test Input Generators`). We
-will provide a docker image of this with the necessary dependencies and a
+will provide a Docker image of this with the necessary dependencies and a
 sufficient set of package management files to compile this project locally.
 
 Note that this project uses the following Z3 version and was run on an
@@ -63,6 +63,7 @@ Z3 version 4.15.1 - 64 bit
 ### Getting a Lay of the Land
 
 This artifact consists of two projects:
+
   1. `Cobb`: the implementation of our type-guided input repair algorithm. `Cobb`
     uses a modified version of `Poirot`, the coverage-type checker described in
     `Covering All the Bases: Type-Based Verification of Test Input Generators` by Zhou et al.
@@ -74,7 +75,7 @@ This artifact consists of two projects:
 All experiments were run on a 2020 M1 13-inch MacBook Pro with 8 GB of memory.
 As long as you use the provided Docker image or compile the program locally this
 is sufficient. Because of some inefficiencies with Docker on Mac, building the
-Docker image yourself will require more than 8GB of RAM
+Docker image yourself will require more than 8 GB of RAM
 
 ## Getting Started with Install/Build
 
@@ -94,9 +95,10 @@ docker run --pull never --platform linux/amd64 -it cobb_artifact
 # You may need to run `eval $(opam env)` again inside of the running image
 ```
 
-Alternatively the docker image can be built from a base image that we also
+Alternatively, the Docker image can be built from a base image that we also
 supply (which contains just opam and Z3 which has a higher Ram requirement). The
 base image can be built with the `base_z3_dockerfile` if preferred, otherwise:
+
 ```sh
 docker load < <(gunzip -c opam-z3.tar.gz)
 # We supply a base image with opam and z3 4.15.1 installed given the higher ram requirements to compile z3 inside of doc on macs
@@ -138,6 +140,7 @@ installation with the `tabulate`, `numpy` and `matplotlib`
 packages. We suggest using `uv` in `uv venv && uv pip install numpy tabulate matplotlib && source .venv/bin/activate`
 
 #### To install the artifact from GitHub:
+
 - clone with the `--recursive flag`
 - or use `git submodule update --init --recursive` after cloning
 
@@ -176,17 +179,20 @@ Error: This pattern matches values of type 'a * 'b * 'c
        but a pattern was expected which matches values of type
          cases = case list
 ```
+
 Not to worry, this artifact does not depend on the code that throws this error,
 and the build succeeds despite it, so this error message can be safely disregarded.
 
 Change directories to the `Luck` subdirectory in `Cobb_PBT` and build the
 Haskell project using:
+
 ```sh
 cabal build luck
 ```
-(note this may take a long time inside the docker image).
 
-## Step by Step Instructions for Running
+(note this may take a long time inside the Docker image).
+
+## Step-by-Step Instructions for Running
 
 ### RQ1
 
@@ -216,16 +222,23 @@ stages (though different hardware and environments may cause changes in
 solver behavior leading to deviations).
 
 Once all the data has been collected (or just using the results files
-currently included in the artifact), generate Table 1 as a LaTeX table printed to stdout
+currently included in the artifact), generate Table 1 as a LaTeX table printed
+to stdout
+
 ```sh
 make results
 ```
+
 #### To use the synthesized generators:
-The synthesized generators from `Cobb` can used in `Cobb_PBT` after a couple syntactic transformations. The script
+
+The synthesized generators from `Cobb` can used in `Cobb_PBT` after a couple
+syntactic transformations. The script
+
 ```sh
 python3 scripts/frequify.py
 ```
-will translate each program in `Cobb/underapproximation_type/data/validation/*/prog.ml.syn` into runnable Ocaml in `Cobb_PBT/bin/*/prog_syn.ml`.
+
+will translate each program in `Cobb/underapproximation_type/data/validation/*/prog.ml.syn` into runnable OCaml in `Cobb_PBT/bin/*/prog_syn.ml`.
 
 ### RQ2/3
 
@@ -237,7 +250,7 @@ export QCHECK_MSG_INTERVAL=2000.0 && dune exec Cobb_PBT -- eval2
 export QCHECK_MSG_INTERVAL=2000.0 && dune exec Cobb_PBT -- eval3
 ```
 
-This will take a few minutes (potentially longer if running inside of docker).
+This will take a few minutes (potentially longer if running inside of Docker).
 For some longer running benchmarks, e.g., `unique_list`, it may look like
 the script is stuck, but just be patient.
 
